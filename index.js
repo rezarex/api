@@ -2,14 +2,16 @@ const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const express = require('express')
 const app = express()
+const morgan = require ('morgan')
 const dotenv = require('dotenv').config()
 const PORT = process.env.PORT || 4000
 const connectDB = require('./config/connect')
 const { notFound, errorHandler } = require("./middlewares/errorHandler")
 const authRoute = require('./routes/auth')
-const postRoute = require('./routes/post')
+const postRoute = require('./routes/postRoute')
 
 
+app.use(morgan("dev"))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(cookieParser())

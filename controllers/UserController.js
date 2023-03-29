@@ -1,9 +1,11 @@
-const User = require('../models/User')
+const User = require('../models/UserModel')
 const asyncHandler = require('express-async-handler');
 const {generateToken} = require('../config/auth');
 const validateMongodbId = require('../utils/validateMongodbid');
 const {generateRefreshToken} = require('../config/refreshToken');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { sendEmail } = require('./emailController');
+const crypto = require('crypto')
 
 
 const createUser = asyncHandler(async(req, res) =>{
@@ -183,6 +185,64 @@ const blockUser = asyncHandler(async(req, res)=>{
     }
  });
 
+ const updatePassword = asyncHandler(async(req, res)=>{
+    const {_id} = req.user
+    const password = req.body.password;
+    validateMongodbId(_id);
+    const user = await User.findById(_id);
+    //console.log(password);
+
+    if(password){
+        user.password = password;
+        const updatedPassword = await user.save()
+        res.json(updatedPassword)
+    } else{
+        res.json(user)
+    }
+ });
+
+ const forgotPasswordToken = asyncHandler(async(req,res)=>{
+    const { email } = req.body;
+    const user = await User.findOne({email})
+    //console.log(user)
+    if(!user) throw new Error('User with this email not found');
+    try {
+        const token = await user.createPasswordResetToken()
+        await user.save()
+        const resetURL = `Hi Please open this link to reset your password. This link is valid for 10 minutes. <a href=http://localhost:5000/api/auth/reset-password/${token}>CLick Here</a>`
+        const data = {
+            to: email,
+            subject: "Forgot Passowrd Link",
+            text: "Hey User",
+            htm: resetURL,
+
+        }
+        sendEmail(data)
+        res.json(token)
+    } catch (error) {
+        throw new Error(error)
+    }
+
+ })
+
+ const resetPassword = asyncHandler(async (req, res)=>{
+    const {password} = req.body;
+    const token = req.params.token;
+    const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+    //console.log(hashedToken);
+    const user = await User.findOne({
+        passwordResetToken: hashedToken,
+        passwordResetExpires: {$gt: Date.now()}
+    });
+
+    if(!user) throw new Error(' Token Expired ');
+    user.password = password;
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save()
+    res.json(user)
+ })
+
 module.exports = {
     handleRefreshToken,
     createUser,
@@ -194,4 +254,7 @@ module.exports = {
     blockUser,
     unblockUser,
     logout,
+    updatePassword,
+    forgotPasswordToken,
+    resetPassword,
 }
