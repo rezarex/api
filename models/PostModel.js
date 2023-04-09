@@ -46,22 +46,18 @@ var postSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    isLiked: {
+    isDisLiked: {
         type: Boolean,
         default: false,
     },
-    likes: {
+    likes: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
-    },
-    likes: {
+    }],
+    dislikes: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
-    },
-    likes: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-    },
+    }],
 }, {
     toJSON: {
         virtuals: true

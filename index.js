@@ -9,6 +9,8 @@ const connectDB = require('./config/connect')
 const { notFound, errorHandler } = require("./middlewares/errorHandler")
 const authRoute = require('./routes/auth')
 const postRoute = require('./routes/postRoute')
+const categoryRoute = require('./routes/categoriesRoute')
+const newsletterRoute = require('./routes/newsletterRoute')
 
 
 app.use(morgan("dev"))
@@ -18,6 +20,11 @@ app.use(cookieParser())
 
 app.use('/api/auth', authRoute)
 app.use('/api/posts', postRoute)
+app.use('/api/category', categoryRoute)
+app.use('/api/newsletter', newsletterRoute)
+
+
+
 app.use(notFound);
 app.use(errorHandler) //was app.request(errorHandler)...in case anything goes wrong
 
