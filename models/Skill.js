@@ -7,7 +7,17 @@ var skillSchema = new mongoose.Schema({
         required:true,
         unique:true,
         index:true,
-    },   
+    },
+    ratings: [{
+        star: Number,
+        comment: String,
+        postedby: { type: mongoose.Schema.Types.ObjectId, ref: "User"}
+    }],
+    totalratings: {
+        type: String,
+        default: 0,
+    },
+    images: [],
 },
 {
    timestamps: true, 

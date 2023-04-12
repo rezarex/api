@@ -11,6 +11,7 @@ const authRoute = require('./routes/auth')
 const postRoute = require('./routes/postRoute')
 const categoryRoute = require('./routes/categoriesRoute')
 const newsletterRoute = require('./routes/newsletterRoute')
+const skillsRoute = require('./routes/skillsRoute')
 
 
 app.use(morgan("dev"))
@@ -22,6 +23,7 @@ app.use('/api/auth', authRoute)
 app.use('/api/posts', postRoute)
 app.use('/api/category', categoryRoute)
 app.use('/api/newsletter', newsletterRoute)
+app.use('/api/skills', skillsRoute)
 
 
 

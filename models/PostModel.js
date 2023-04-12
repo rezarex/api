@@ -21,10 +21,7 @@ var postSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    photo:{
-        type:String,
-        default:"default.jpg",
-    },
+    photo:[],
     author:{
         type: String,
         default: "Admin",
