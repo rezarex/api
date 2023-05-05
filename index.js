@@ -31,7 +31,7 @@ const swaggerDefinition = {
     },
     servers: [
       {
-        url: `https://api-gamma-plum.vercel.app/:${PORT}`,
+        url: `https://marvin-n1cb.onrender.com/`,
         description: 'Dev environment'
       }
     ]
