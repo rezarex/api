@@ -4,6 +4,7 @@ const express = require('express')
 const app = express()
 const morgan = require ('morgan')
 const dotenv = require('dotenv').config()
+const cors = require('cors');
 const PORT = process.env.PORT || 3000
 const connectDB = require('./config/connect')
 const fs = require('fs');
@@ -17,6 +18,8 @@ const categoryRoute = require('./routes/categoriesRoute')
 const newsletterRoute = require('./routes/newsletterRoute')
 const skillsRoute = require('./routes/skillsRoute')
 
+
+app.use(cors());
 
 
 const swaggerDefinition = {
