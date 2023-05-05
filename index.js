@@ -28,7 +28,7 @@ const swaggerDefinition = {
     },
     servers: [
       {
-        url: `http://localhost:${PORT}`,
+        url: `https://api-gamma-plum.vercel.app/:${PORT}`,
         description: 'Dev environment'
       }
     ]
