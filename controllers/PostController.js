@@ -239,6 +239,10 @@ const uploadImages = asyncHandler(async(req, res)=>{
             urls.push(path)
             fs.unlinkSync(path)
         }
+        // const images = urls.map((file)=>{
+        //     return file;
+        // })
+        // res.json(images)
         const findPost = await Post.findByIdAndUpdate(id,{
             photo: urls.map((file)=>{
                 return file;

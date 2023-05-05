@@ -4,11 +4,54 @@ const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
 const { profileImgResize, uploadPhoto } = require('../middlewares/uploadImg');
 const router = express.Router()
 
+/**
+ * @swagger
+ * /api/auth/register:
+ *  post:
+ *      summary: this is used for user registration
+ *      responses:
+ *       200:
+ *         description: Registration of users
+ */
 router.post('/register', createUser);
+/**
+ * @swagger
+ * /api/auth/forgot-password-token:
+ *  post:
+ *      summary: this is used when user forgot their password
+ *      responses:
+ *       200:
+ *         description: Forgot password
+ */
 router.post('/forgot-password-token', forgotPasswordToken)
+/**
+ * @swagger
+ * /api/auth/reset-password/{token}:
+ *  put:
+ *      summary: this is used for reseting a user's password token
+ *      parameters:
+ *       - name: token
+ *         in: path
+ *         description: token used for reseting password
+ *         required: true
+ *         schema:
+ *           type: string
+ *      responses:
+ *       200:
+ *         description: Reseting the password token
+ */
 router.put('/reset-password/:token', resetPassword)
 router.post('/login', loginUser);
 router.post('/login/admin', loginAdmin);
+/**
+ * @swagger
+ * /api/auth/allusers:
+ *   get:
+ *     summary: Returns a list of all users
+ *     responses:
+ *       200:
+ *         description: A list of users
+ */
 router.get('/allusers', getAllUsers);
 router.get('/refresh', handleRefreshToken);
 router.get('/logout',logout)
