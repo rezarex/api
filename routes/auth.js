@@ -42,6 +42,15 @@ router.post('/forgot-password-token', forgotPasswordToken)
  */
 router.put('/reset-password/:token', resetPassword)
 router.post('/login', loginUser);
+/**
+ * @swagger
+ * /api/auth/login/admin:
+ *  post:
+ *      summary: this is used to login admin user
+ *      responses:
+ *       200:
+ *         description: Registration of users
+ */
 router.post('/login/admin', loginAdmin);
 /**
  * @swagger
