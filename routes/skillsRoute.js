@@ -9,8 +9,8 @@ router.post('/add', authMiddleware, isAdmin, createSkill)
 router.put('/edit/:id', authMiddleware, isAdmin, updateSkill)
 router.put('/upload/:id', authMiddleware, isAdmin, uploadPhoto.array('images',10), skillImgResize)
 router.delete('/delete/:id', authMiddleware, isAdmin, deleteSkill)
-router.get('/:id', authMiddleware, isAdmin, getASkill)
-router.get('/', authMiddleware, isAdmin, getSkill)
+router.get('/:id', getASkill)
+router.get('/', getSkill)
 router.put('/rating', authMiddleware, isAdmin, rating)
 
 module.exports = router;
