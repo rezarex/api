@@ -12,6 +12,6 @@ router.put('/upload/:id', authMiddleware, isAdmin, uploadPhoto.array('images',10
 router.delete('/delete/:id', authMiddleware, isAdmin, deleteProject)
 router.get('/:id', getProject)
 router.get('/', getAllProjects)
-router.put('/rating', authMiddleware, isAdmin, rating)
+
 
 module.exports = router;
