@@ -251,4 +251,4 @@ const uploadImages = asyncHandler(async(req, res)=>{
     }
 })
 
-module.exports = {createProject, getProject, getAllProjects, updateProject, deleteProject, likeProject, dislikeProject}
+module.exports = {createProject, uploadImages, getProject, getAllProjects, updateProject, deleteProject, likeProject, dislikeProject}
