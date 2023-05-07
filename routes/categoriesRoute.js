@@ -8,6 +8,6 @@ router.post('/add', authMiddleware, isAdmin, createCategory)
 router.put('/edit/:id', authMiddleware, isAdmin, updateCategory)
 router.delete('/delete/:id', authMiddleware, isAdmin, deleteCategory)
 router.get('/:id', authMiddleware, isAdmin, getACategory)
-router.get('/', authMiddleware, isAdmin, getCategory)
+router.get('/', getCategory)
 
 module.exports = router;
