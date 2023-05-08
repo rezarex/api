@@ -19,6 +19,7 @@ const newsletterRoute = require('./routes/newsletterRoute')
 const skillsRoute = require('./routes/skillsRoute')
 const projectsRoute = require('./routes/projectsRoute')
 const subscriberRoute = require('./routes/subscriberRoute')
+const messageRoute = require('./routes/messageRoute')
 
 
 app.use(cors());
@@ -63,6 +64,7 @@ app.use('/api/newsletter', newsletterRoute)
 app.use('/api/skills', skillsRoute)
 app.use('/api/projects', projectsRoute)
 app.use('/api/subscriber', subscriberRoute)
+app.use('/api/messages', messageRoute)
 app.use('/api/docs', swaggerUi.serve,swaggerUi.serve, swaggerUi.setup(swaggerSpec) )
 
 
