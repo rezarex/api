@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler')
-const slugify = require('slugify')
-const validateMongodbId = require("../utils/validateMongodbid")
-const cloudinaryUploadImg = require('../utils/cloudinary')
+// const slugify = require('slugify')
+// const validateMongodbId = require("../utils/validateMongodbid")
+// const cloudinaryUploadImg = require('../utils/cloudinary')
 const fs = require("fs")
 
 const stkPush = asyncHandler(async (req,res)=>{
@@ -47,4 +47,4 @@ const stkPush = asyncHandler(async (req,res)=>{
  })
 
 
- module.exports = { stkPush, stkCallback}
+ module.exports = { stkCallback}

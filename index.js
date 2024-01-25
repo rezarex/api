@@ -81,7 +81,7 @@ app.use(errorHandler) //was app.request(errorHandler)...in case anything goes wr
 
 const start = async () => {
     try {
-        await connectDB(process.env.MONGO_URL) 
+        //await connectDB(process.env.MONGO_URL) 
         //swaggerDocs()
         
         app.listen(PORT, console.log(`server is live on PORT ${PORT}..`))
