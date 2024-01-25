@@ -63,6 +63,7 @@ const stkPush = asyncHandler(async (req,res)=>{
         // Save the variables to a file or database, etc.
         // ...
         fs.writeFileSync('/tmp/test-sync', `the amount paid is ${amount} and it was paid by ${phone}`);
+        console.log(`the amount paid is ${amount} and it was paid by ${phone}`);
       
         // Return a success response to mpesa
         return res.json("success");
